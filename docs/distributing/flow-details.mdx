@@ -3,14 +3,29 @@ sidebar_label: Flow Details
 sidebar_position: 2
 ---
 
-# Authentication
+# Flow Details
 <AppliesTo all />
 
+## Authentication
 <FlowLink /> supports OAuth, forms authentication, and API keys for authentication. You can use any of these methods to authenticate with the Flow service. The recommended method is to use OAuth, as it provides the most secure and flexible authentication mechanism.
 
 To perform an interactive login use the `vpk login` command. This will persist your authentication locally inside of `~/.vpk`. For running commands without interaction, such as a CI/CD pipeline, you can specify the `--api-key` option to the `vpk` commands that interact with Flow. 
 
-# API
+## Data Structure
+A basic overview of the data structure used by <FlowLink /> is as follows:
+```mermaid
+flowchart TD
+    Team -->|many| Project
+    Team -->|many| User
+    Team -->|1| Subscription
+    Project -->|many| Channel
+    Channel -->|many| Release
+```
+
+The pricing model is linked to a team. Though a user can be a member of many teams, a user will only be able to create projects in a single free tier team (teams without a paid subscription). A team, contains projects. A project refers to a single application, more specificially a single package id. A project can have many channels, which are used to organize releases. A channel is a logical grouping of releases, such as "stable", "beta", or "alpha". Channels should also be used to separate different platforms such as "Windows", "macOS" and "Linux". Within a channel a release is made up of one ore more artifacts (the files created by running `vpk pack`), which are the actual files that are distributed to users. For a release to be considered valid it must contain at least the full release package as well as the corresponding Setup.exe file.
+
+
+## API
 <FlowLink /> offers a REST API for interacting with the service. There is an OpenAPI specification available at https://api.velopack.io/swagger that describes the API endpoints and their parameters. This API allows you to build your own automation tools that integrate with Velopack Flow.
 
 `vpk` supports making direct calls against this API using the `vpk flow api` command. This command allows you to make GET, POST, PUT, and DELETE requests to the Flow API. You can use this command to automate tasks such as creating projects, uploading releases, and managing channels. 
