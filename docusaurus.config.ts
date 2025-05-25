@@ -17,6 +17,9 @@ const config: Config = {
     defaultLocale: 'en',
     locales: ['en'],
   },
+  customFields: {
+    flowBaseUrl: 'https://app.velopack.io',
+  },
   themes: [
     ['@easyops-cn/docusaurus-search-local', {
       hashed: true,
