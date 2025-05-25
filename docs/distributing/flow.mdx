@@ -1,0 +1,38 @@
+---
+sidebar_label: Velopack Flow
+sidebar_position: 1
+---
+
+# Velopack Flow
+
+Flow is Velopack's hosted solution for distributing applications. It provides a seamless way to distribute your Velopack applications. If you would prefer to self-host your application and manually manage update and rollbacks, see the [self-hosting](self-hosting.mdx) section.
+
+## Features
+
+- **Full Managed Solution**: No need to manage your own infrastructure.
+- **Free and Paid Tiers**: Choose the plan that fits your needs.
+- **Ease of Use**: The simplest way to distribute Velopack applications.
+
+
+## Getting Started
+
+Start by creating a free account on Velopack Flow at [https://app.velopack.io](https://app.velopack.io). 
+
+Once you have an account, you need to create a project. This can be done by click the "Create New Project" button on the main dashboard, or by navigating to the Projects list on your Team's home page.
+Make sure that the Package Id you enter exactly matches the `--packId` you used when building your Velopack release. 
+
+Back in the Velopack CLI, package your application as you normally would following the [packaging guide](../packaging/overview.mdx). 
+
+Next login to the Flow service by running the following command.
+```bash
+vpk login
+```
+For more details on how to login with the CLI see [Flow Authentication](flow-auth.mdx).
+
+
+
+## Pricing
+
+Pricing for Velopack flow is done on a per-team basis. When you first create an account, it will create a default team for you ([https://app.velopack.io/teams](https://app.velopack.io/teams)). You can create additional teams or rename this team at any time. From the team page, you can select Billing to see your current plan as well as pricing options for paid plans.
+
+Though you can be a member of many teams, you will only be able to create Projects in a single Free tier team.
