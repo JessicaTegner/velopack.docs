@@ -11,12 +11,16 @@ sidebar_position: 1
 ## Features
 
 - Full Managed Solution No need to manage your own infrastructure.
-- Free and Paid Tiers: Choose the plan that fits your needs.
-- Tiered Rollouts: Gradually release updates to a subset of users before a full rollout.
-- Simple disabling of individual releases: If a release is found to be problematic, you can disable it and prevent users from receiving it.
+- [Tiered Rollouts](Flow/tiered-rollout.mdx): Gradually release updates to a subset of users before a full rollout.
+- [Static Links](Flow/static-links.mdx): Static links that can be used to direct users to the latest release of your application, or a specific release.
+- [API](Flow/api.mdx): A REST API that allows you to programmatically manage your releases, channels, and projects.
 
 ## Getting Started
 
+### Integrating with Flow
+Simply following current [integration guide](../integrating/overview.mdx) to integrate Velopack into your application. Make sure the `UpdateManager` is configured to use the `VelopackFlowSource` as the `IUpdateSource`. This is the default behavior of the default constructor.
+
+### Publishing to Flow
 Start by creating a free account on <FlowLink />.
 
 Once you have an account, you need to create a project. This can be done by click the "Create New Project" button on the main dashboard, or by navigating to the Projects list on your Team's home page.
@@ -28,7 +32,7 @@ Next login to the Flow service by running the following command.
 ```bash
 vpk login
 ```
-For more details on interacting with Flow through the `vpk` CLI see [Flow Details](flow-details.mdx).
+For more details on authenticating with Flow through the `vpk` CLI see [Flow Authentication](Flow/authentication.mdx).
 
 You can now upload your release to Flow by running the following command in the directory where your release is located:
 ```bash
@@ -36,9 +40,3 @@ vpk publish --outputDir <OutputDir> --channel <Channel>
 ```
 
 Done! You can now view the release in Flow. Within a few minutes the release will be available and ready for distrobution.
-
-## Pricing
-
-Pricing for Velopack Flow is done on a per-team basis. When you first create an account, it will create a default team for you (see <FlowLink suffix="teams" text="teams page" />). You can create additional teams or rename this team at any time. From the team page, you can select Billing to see your current plan as well as pricing options for paid plans.
-
-Though you can be a member of many teams, you will only be able to create Projects in a single Free tier team.
