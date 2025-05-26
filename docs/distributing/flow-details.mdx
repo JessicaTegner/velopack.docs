@@ -24,6 +24,22 @@ flowchart TD
 
 The pricing model is linked to a team. Though a user can be a member of many teams, a user will only be able to create projects in a single free tier team (teams without a paid subscription). A team, contains projects. A project refers to a single application, more specificially a single package id. A project can have many channels, which are used to organize releases. A channel is a logical grouping of releases, such as "stable", "beta", or "alpha". Channels should also be used to separate different platforms such as "Windows", "macOS" and "Linux". Within a channel a release is made up of one ore more artifacts (the files created by running `vpk pack`), which are the actual files that are distributed to users. For a release to be considered valid it must contain at least the full release package as well as the corresponding Setup.exe file.
 
+## Static Links
+<FlowLink /> provides static links for each channel, and release. These links can be referred from your own website to direct user to download the latest release of an application, or to download a specific release. 
+
+The most common will be the latest release for a given channel. On the channel list page you can click the ellipsis menu on the right side of the channel row and select "Copy latest setup link". This will copy a link to the latest setup installer for that channel to your clipboard. This URL will always point to the latest release for that channel, so you can use it in your own website or documentation.
+![Latest release for channel static link](../../static/images/latest-channel-link.png)
+
+You can also get direct link to specific releases. On the release details page there is a Release links section with buttons to copy links to installers at specific versions. 
+
+For more advanced use cases see the `download/*` endpoints under the Releases section from [API](#api) section below. The API provides additional functionality to get links to specific artifacts or artifact types.
+
+## Tiered Rollout
+Tiered rollout is a feature of <FlowLink /> that allows you to gradually release a new version of your application to a subset of users. This is useful for testing new features or changes before rolling them out to all users. You can specify a rough percentage of users that should receive the new version by adjusting the slider on the release details page for a given release. 
+
+![Tiered Rollout Slider](../../static/images/tiered-rollout-slider.png)
+
+When a user installs a Velopack application they are given a random ID. When the `UpdateManager` queries for updates, this ID is passed to the Flow service. To determine if a user should receive the new version of the application, the Flow service hashes this ID and checks if it falls within the percentage range specified for the release. If it does, the user will receive the new version of the application.
 
 ## API
 <FlowLink /> offers a REST API for interacting with the service. There is an OpenAPI specification available at https://api.velopack.io/swagger that describes the API endpoints and their parameters. This API allows you to build your own automation tools that integrate with Velopack Flow.
