@@ -18,7 +18,8 @@ Get started with .NET 5+ (cross-platform) or .Net Framework.
    ```cs
    private static async Task UpdateMyApp()
    {
-       var mgr = new UpdateManager("https://the.place/you-host/updates");
+      // This will default to using Velopack Flow as the IUpdateSource
+       var mgr = new UpdateManager();
 
        // check for new version
        var newVersion = await mgr.CheckForUpdatesAsync();
